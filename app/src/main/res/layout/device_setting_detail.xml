@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/spaceLay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#22000000"
+        android:padding="0dp"></RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <RelativeLayout
+                android:id="@+id/btnLay1"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start|center_vertical"
+                    android:drawableRight="@drawable/chevron_right_white"
+                    android:text="@string/devise_setting_change_name"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BBBBBB" />
+
+            <RelativeLayout
+                android:id="@+id/btnLay2"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:id="@+id/txt_camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start|center_vertical"
+                    android:drawableRight="@drawable/chevron_right_white"
+                    android:text="@string/device_setting_change_lan"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BBBBBB" />
+
+            <RelativeLayout
+                android:id="@+id/btnLay3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start|center_vertical"
+                    android:drawableRight="@drawable/chevron_right_white"
+                    android:text="@string/device_setting_schedule"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BBBBBB" />
+
+            <RelativeLayout
+                android:id="@+id/btnLay4"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start|center_vertical"
+                    android:drawableRight="@drawable/chevron_right_white"
+                    android:text="@string/device_setting_content_time"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BBBBBB" />
+            <RelativeLayout
+                android:id="@+id/btnLay5"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start|center_vertical"
+                    android:drawableRight="@drawable/chevron_right_white"
+                    android:text="@string/device_setting_slide_effective"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BBBBBB" />
+            <RelativeLayout
+                android:id="@+id/btnLay6"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start|center_vertical"
+                    android:drawableRight="@drawable/chevron_right_white"
+                    android:text="@string/device_setting_restart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BBBBBB" />
+            <RelativeLayout
+                android:id="@+id/btnLay7"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start|center_vertical"
+                    android:drawableRight="@drawable/chevron_right_white"
+                    android:text="@string/device_setting_initialization"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BBBBBB" />
+            <RelativeLayout
+                android:id="@+id/btnLay8"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start|center_vertical"
+                    android:drawableRight="@drawable/chevron_right_white"
+                    android:text="@string/device_setting_bluetooth"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BBBBBB" />
+            <RelativeLayout
+                android:id="@+id/btnLay9"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start|center_vertical"
+                    android:drawableRight="@drawable/chevron_right_white"
+                    android:text="@string/device_setting_content_rendering"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BBBBBB" />
+            <RelativeLayout
+                android:id="@+id/btnLay10"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start|center_vertical"
+                    android:drawableRight="@drawable/chevron_right_white"
+                    android:text="@string/device_setting_brightness"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BBBBBB" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

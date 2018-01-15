@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">BCEx0112</string>
+
+    <!-- デバイス設定の詳細 -->
+    <string name="devise_setting_change_name">名前の変更</string>
+    <string name="device_setting_change_lan">無線LANの変更</string>
+    <string name="device_setting_schedule">スケジュール</string>
+    <string name="device_setting_content_time">コンテンツの切り替え時間</string>
+    <string name="device_setting_slide_effective">スライド効果</string>
+    <string name="device_setting_restart">再起動</string>
+    <string name="device_setting_initialization">初期化</string>
+    <string name="device_setting_bluetooth">Bluetoothスピーカー</string>
+    <string name="device_setting_content_rendering">コンテンツレンダリングオプション</string>
+    <string name="device_setting_brightness">明るさ変化</string>
+
+    <string name="confirmation">確認</string>
+    <string name="name">名</string>
+    <string name="please_enter_name">デバイスの名を入力してください</string>
+    <string name="minute">分</string>
+    <string name="second">秒</string>
+    <string name="login">ログイン</string>
+
+</resources>
