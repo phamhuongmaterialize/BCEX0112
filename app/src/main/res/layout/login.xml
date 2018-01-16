@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,17 +26,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_marginBottom="70dp"
         android:gravity="center"
-        android:layout_marginBottom="70dp">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            >
+            android:layout_marginStart="25dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,14 +43,13 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/mail"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/mail" />
 
                 <EditText
                     android:id="@+id/login_mail_edittext"
@@ -58,7 +58,7 @@
                     android:layout_weight="10"
                     android:ems="10"
                     android:inputType="textEmailAddress"
-                    android:text="メールアドレスを入力してください"
+                    android:text="@string/please_input_mail_adress"
                     android:textColor="#bdbdbd"
                     android:textSize="16dp" />
 
@@ -67,8 +67,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="40dp"
@@ -83,7 +83,7 @@
                     android:layout_weight="10"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="パスワードを入力してください"
+                    android:text="@string/please_input_password"
                     android:textColor="#bdbdbd"
                     android:textSize="16dp" />
 
@@ -93,10 +93,13 @@
                 android:id="@+id/login_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="@string/login"
-                android:layout_marginTop="20dp"/>
+                android:textColor="#FFFFFF"
+                android:background="@drawable/button_background_blue"/>
 
         </LinearLayout>
     </LinearLayout>
+
 
 </LinearLayout>

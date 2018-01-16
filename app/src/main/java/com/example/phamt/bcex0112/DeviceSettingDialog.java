@@ -21,10 +21,14 @@ import android.widget.Toast;
  */
 
 public class DeviceSettingDialog extends DialogFragment {
-    /** タグ */
+    /**
+     * タグ
+     */
     private static final String TAG = DeviceSettingDialog.class.getSimpleName();
 
-    /** フラグメントのレイアウト */
+    /**
+     * フラグメントのレイアウト
+     */
     private static final int FRGMLAYOUT_XML = R.layout.device_setting_detail;
 
     public static DeviceSettingDialog newInstance() {
@@ -75,7 +79,7 @@ public class DeviceSettingDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 //
-                main.setViewTab(2);
+                main.setViewTab(MainActivity.TabFragment.DEVICE_NAME);
 
                 // ダイアログを非表示
                 dismiss();
@@ -111,7 +115,7 @@ public class DeviceSettingDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 //
-                main.setViewTab(5);
+                main.setViewTab(MainActivity.TabFragment.DEVICE_SWITCH);
 
                 // ダイアログを非表示
                 dismiss();

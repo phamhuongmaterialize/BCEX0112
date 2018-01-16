@@ -3,6 +3,7 @@ package com.example.phamt.bcex0112;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -20,7 +21,9 @@ import android.widget.Toast;
 
 public class LoginFragment extends Fragment {
 
-    /** Root View */
+    /**
+     * Root View
+     */
     private View mRootView = null;
 
     private MainActivity main = null;
@@ -30,8 +33,8 @@ public class LoginFragment extends Fragment {
     private EditText mPassEditText = null;
 
     public static LoginFragment newInstance() {
-        LoginFragment mLoginFragment  = new LoginFragment();
-        return  mLoginFragment;
+        LoginFragment mLoginFragment = new LoginFragment();
+        return mLoginFragment;
     }
 
     @Override
@@ -60,10 +63,10 @@ public class LoginFragment extends Fragment {
         mMailEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
+                if (hasFocus) {
                     mMailEditText.setText("");
                 } else {
-                    mMailEditText.setHint(getResources().getString(R.string.please_enter_name));
+                    mMailEditText.setHint(getResources().getString(R.string.please_input_mail_adress));
                 }
                 mMailEditText.setTextColor(Color.BLACK);
             }
@@ -73,50 +76,51 @@ public class LoginFragment extends Fragment {
         mPassEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
+                if (hasFocus) {
                     mPassEditText.setText("");
+                    mPassEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 } else {
-                    mPassEditText.setHint(getResources().getString(R.string.please_enter_name));
+                    mPassEditText.setHint(getResources().getString(R.string.please_input_password));
                 }
                 mPassEditText.setTextColor(Color.BLACK);
             }
         });
 
-        mLoginButton = (Button) mRootView.findViewById(R.id.login_button) ;
+        mLoginButton = (Button) mRootView.findViewById(R.id.login_button);
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),"login" , Toast.LENGTH_LONG ).show();
-                main.setViewTab(1);
+                Toast.makeText(getActivity(), "login", Toast.LENGTH_LONG).show();
+                main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);
             }
         });
 
 
     }
 
-//    //バックボタン押下
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//        if(getView() == null){
-//            return;
-//        }
-//
-//        getView().setFocusableInTouchMode(true);
-//        getView().requestFocus();
-//        getView().setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//
-//                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
-//                    main.setViewTab(1);
-//                    Log.v("DeviceSwitchTime","バックボタン押下");
-//
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
-//    }
+    //バックボタン押下
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(getView() == null){
+            return;
+        }
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+                    main.setViewTab(MainActivity.TabFragment.START);
+                    Log.v("DeviceSwitchTime","バックボタン押下");
+
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
 }

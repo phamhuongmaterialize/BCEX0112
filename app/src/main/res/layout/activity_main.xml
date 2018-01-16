@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.phamt.bcex0112.MainActivity">
+    tools:context="com.example.phamt.bcex0112.MainActivity"
+    android:background="#FFFFFF">
 
 
     <LinearLayout
-        android:id="@+id/tab_container"
+        android:id="@+id/tabs_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <include layout="@layout/tab"/>
+        <include layout="@layout/main_tab" />
 
     </LinearLayout>
 

@@ -1,8 +1,11 @@
 package com.example.phamt.bcex0112;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,20 +20,23 @@ import android.widget.ImageView;
 
 public class UploadFragment extends Fragment {
 
-    /** Root View */
+    /**
+     * Root View
+     */
     private View mRootView = null;
 
     private GridView mImageGridview = null;
+    private FloatingActionButton mFloatAddButton = null;
 
-    Integer[] imageArray = { R.drawable.pic1, R.drawable.pic2,
+    Integer[] imageArray = {R.drawable.pic1, R.drawable.pic2,
             R.drawable.pic3, R.drawable.pic4,
             R.drawable.pic5, R.drawable.pic6,
             R.drawable.pic7, R.drawable.pic8,
-            R.drawable.pic9, R.drawable.pic10, R.drawable.pic11 };
+            R.drawable.pic9, R.drawable.pic10, R.drawable.pic11};
 
     public static UploadFragment newInstance() {
-        UploadFragment mUpload  = new UploadFragment();
-        return  mUpload;
+        UploadFragment mUpload = new UploadFragment();
+        return mUpload;
     }
 
     @Override
@@ -56,15 +62,23 @@ public class UploadFragment extends Fragment {
         mImageGridview = (GridView) mRootView.findViewById(R.id.image_gridview);
         mImageGridview.setAdapter(new ImageAdapterGridView(getContext()));
 
-        mImageGridview.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        mImageGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent,
-                                    View v, int position, long id)
-            {
+                                    View v, int position, long id) {
 
             }
         });
 
+        mFloatAddButton = (FloatingActionButton) mRootView.findViewById(R.id.upload_add_float_button);
+        mFloatAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivity(i);
+
+            }
+        });
 
     }
 
@@ -76,7 +90,7 @@ public class UploadFragment extends Fragment {
         }
 
         public int getCount() {
-            return imageArray.length-1;
+            return imageArray.length - 1;
         }
 
         public Object getItem(int position) {
@@ -98,8 +112,13 @@ public class UploadFragment extends Fragment {
             } else {
                 mImageView = (ImageView) convertView;
             }
-            mImageView.setImageResource(imageArray[position]);
-            return mImageView;
+//            if(position>imageArray.length){
+//                return null;
+//            } else {
+                mImageView.setImageResource(imageArray[position]);
+                Log.v("UploadFragment", "test :" + imageArray[position]);
+                return mImageView;
+//            }
         }
     }
 

@@ -21,19 +21,21 @@ import android.widget.Toast;
 
 public class DeviceSwitchTimeFragment extends Fragment {
 
-    /** Root View */
+    /**
+     * Root View
+     */
     private View mRootView = null;
 
     private MainActivity main = null;
 
     private ImageView mBackImageView = null;
-    private Button mConfirmationButton= null;
+    private Button mConfirmationButton = null;
     private NumberPicker mMinutePicker = null;
     private NumberPicker mSecondPicker = null;
 
     public static DeviceSwitchTimeFragment newInstance() {
-        DeviceSwitchTimeFragment mDeviceSwitchTimeFragment  = new DeviceSwitchTimeFragment();
-        return  mDeviceSwitchTimeFragment;
+        DeviceSwitchTimeFragment mDeviceSwitchTimeFragment = new DeviceSwitchTimeFragment();
+        return mDeviceSwitchTimeFragment;
     }
 
     @Override
@@ -62,7 +64,7 @@ public class DeviceSwitchTimeFragment extends Fragment {
         mBackImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                main.setViewTab(1);
+                main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);
             }
         });
 
@@ -75,7 +77,7 @@ public class DeviceSwitchTimeFragment extends Fragment {
         mMinutePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                if(i1 != 0){
+                if (i1 != 0) {
                     mSecondPicker.setMinValue(0);
                     mSecondPicker.setMaxValue(59);
                 } else {
@@ -85,12 +87,12 @@ public class DeviceSwitchTimeFragment extends Fragment {
             }
         });
 
-        mConfirmationButton = (Button) mRootView.findViewById(R.id.device_switching_time_confirmation_button) ;
+        mConfirmationButton = (Button) mRootView.findViewById(R.id.device_switching_time_confirmation_button);
         mConfirmationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),mMinutePicker.getValue() +"分"+mSecondPicker.getValue()+"秒" , Toast.LENGTH_LONG ).show();
-                main.setViewTab(1);
+                Toast.makeText(getActivity(), mMinutePicker.getValue() + "分" + mSecondPicker.getValue() + "秒", Toast.LENGTH_LONG).show();
+                main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);
             }
         });
 
@@ -102,7 +104,7 @@ public class DeviceSwitchTimeFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        if(getView() == null){
+        if (getView() == null) {
             return;
         }
 
@@ -112,9 +114,9 @@ public class DeviceSwitchTimeFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
-                    main.setViewTab(1);
-                    Log.v("DeviceSwitchTime","バックボタン押下");
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);
+                    Log.v("DeviceSwitchTime", "バックボタン押下");
 
                     return true;
                 }

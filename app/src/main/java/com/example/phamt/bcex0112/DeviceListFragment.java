@@ -28,7 +28,9 @@ import java.util.List;
 
 public class DeviceListFragment extends Fragment {
 
-    /** Root View */
+    /**
+     * Root View
+     */
     private View mRootView = null;
 
     private ImageButton mAddButton = null;
@@ -40,8 +42,8 @@ public class DeviceListFragment extends Fragment {
     private MainActivity main = null;
 
     public static DeviceListFragment newInstance() {
-        DeviceListFragment mDeviceActivity  = new DeviceListFragment();
-        return  mDeviceActivity;
+        DeviceListFragment mDeviceActivity = new DeviceListFragment();
+        return mDeviceActivity;
     }
 
     @Override
@@ -64,14 +66,14 @@ public class DeviceListFragment extends Fragment {
     public void onActivityCreated(Bundle bundle) {
         super.onActivityCreated(bundle);
 
-        mAddButton = (ImageButton) mRootView.findViewById(R.id.device_add_imagebutton);
+        mAddButton = (ImageButton) mRootView.findViewById(R.id.device_add_float_button);
         mDeviceListView = (ListView) mRootView.findViewById(R.id.device_listview);
 
         main = (MainActivity) getActivity();
 
         mDeviceList = new ArrayList<>();
         setListValue(mDeviceList);
-        mDiviceHistoryAdapter = new DeviceHistoryAdapter(getContext(),mDeviceList);
+        mDiviceHistoryAdapter = new DeviceHistoryAdapter(getContext(), mDeviceList);
         mDeviceListView.setAdapter(mDiviceHistoryAdapter);
         justifyListViewHeightBasedOnChildren(mDeviceListView);
 
@@ -80,12 +82,10 @@ public class DeviceListFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 DeviceSettingDialog deviceSettingDialog = DeviceSettingDialog.newInstance();
-                deviceSettingDialog.show(getFragmentManager(),"");
+                deviceSettingDialog.show(getFragmentManager(), "");
                 main.setmLastclass(getClass());
             }
         });
-
-
 
 
     }
@@ -93,13 +93,13 @@ public class DeviceListFragment extends Fragment {
     private void setListValue(List<JSONObject> mDeviceList) {
         try {
             JSONObject js1 = new JSONObject();
-            js1.put("name","Device1");
+            js1.put("name", "Device1");
 
             JSONObject js2 = new JSONObject();
-            js2.put("name","Device2");
+            js2.put("name", "Device2");
 
             JSONObject js3 = new JSONObject();
-            js3.put("name","Device3");
+            js3.put("name", "Device3");
 
             mDeviceList.add(js1);
             mDeviceList.add(js2);

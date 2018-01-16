@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -11,23 +13,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <ListView
                 android:id="@+id/device_listview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <ImageButton
-                android:id="@+id/device_add_imagebutton"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/device_plus_button"
-                android:layout_gravity="center"
-                android:src="@android:drawable/ic_input_add"
-                android:layout_marginTop="15dp"/>
+
 
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/device_add_float_button"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="15dp"
+        android:src="@android:drawable/ic_menu_add"
+        app:backgroundTint="#1a237e" />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -19,7 +19,9 @@ import android.widget.Toast;
 
 public class DeviceNameFragment extends Fragment {
 
-    /** Root View */
+    /**
+     * Root View
+     */
     private View mRootView = null;
 
     private MainActivity main = null;
@@ -29,8 +31,8 @@ public class DeviceNameFragment extends Fragment {
     private EditText mNameEditText = null;
 
     public static DeviceNameFragment newInstance() {
-        DeviceNameFragment mDeviceNameFragment  = new DeviceNameFragment();
-        return  mDeviceNameFragment;
+        DeviceNameFragment mDeviceNameFragment = new DeviceNameFragment();
+        return mDeviceNameFragment;
     }
 
     @Override
@@ -62,22 +64,22 @@ public class DeviceNameFragment extends Fragment {
         mBackImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                main.setViewTab(1);
+                main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);
             }
         });
 
         mConfirmationTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),mNameEditText.getText() , Toast.LENGTH_LONG ).show();
-                main.setViewTab(1);
+                Toast.makeText(getActivity(), mNameEditText.getText(), Toast.LENGTH_LONG).show();
+                main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);
             }
         });
 
         mNameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
+                if (hasFocus) {
                     mNameEditText.setText("");
                 } else {
                     mNameEditText.setHint(getResources().getString(R.string.please_enter_name));
@@ -93,7 +95,7 @@ public class DeviceNameFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        if(getView() == null){
+        if (getView() == null) {
             return;
         }
 
@@ -103,9 +105,9 @@ public class DeviceNameFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
-                    main.setViewTab(1);
-                    Log.v("DeviceNameFragment","バックボタン押下");
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);
+                    Log.v("DeviceNameFragment", "バックボタン押下");
 
                     return true;
                 }
