@@ -77,6 +77,7 @@ public class UploadFragment extends Fragment {
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivity(i);
 
+
             }
         });
 

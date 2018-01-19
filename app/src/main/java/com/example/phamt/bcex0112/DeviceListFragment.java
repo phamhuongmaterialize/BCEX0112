@@ -37,13 +37,14 @@ public class DeviceListFragment extends Fragment {
     private ListView mDeviceListView = null;
 
     private List<JSONObject> mDeviceList = null;
-    private DeviceHistoryAdapter mDiviceHistoryAdapter = null;
+    private DeviceAdapter mDiviceHistoryAdapter = null;
 
     private MainActivity main = null;
+    private BluetoothService mBluetoothService = null;
 
     public static DeviceListFragment newInstance() {
-        DeviceListFragment mDeviceActivity = new DeviceListFragment();
-        return mDeviceActivity;
+        DeviceListFragment mDeviceListFragment = new DeviceListFragment();
+        return mDeviceListFragment;
     }
 
     @Override
@@ -73,7 +74,7 @@ public class DeviceListFragment extends Fragment {
 
         mDeviceList = new ArrayList<>();
         setListValue(mDeviceList);
-        mDiviceHistoryAdapter = new DeviceHistoryAdapter(getContext(), mDeviceList);
+        mDiviceHistoryAdapter = new DeviceAdapter(getContext(), mDeviceList);
         mDeviceListView.setAdapter(mDiviceHistoryAdapter);
         justifyListViewHeightBasedOnChildren(mDeviceListView);
 
@@ -83,7 +84,19 @@ public class DeviceListFragment extends Fragment {
 
                 DeviceSettingDialog deviceSettingDialog = DeviceSettingDialog.newInstance();
                 deviceSettingDialog.show(getFragmentManager(), "");
-                main.setmLastclass(getClass());
+//                main.setmLastclass(getClass());
+            }
+        });
+
+        mBluetoothService =  new BluetoothService(main,null);
+        mAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mBluetoothService.checkBluetoothStatus()) {
+                    main.setViewTab(MainActivity.TabFragment.DEVICE_UPLOAD);
+                } else {
+                    mBluetoothService.bluetoothON();
+                }
             }
         });
 
@@ -110,7 +123,7 @@ public class DeviceListFragment extends Fragment {
     }
 
     public static void justifyListViewHeightBasedOnChildren(ListView listView) {
-        DeviceHistoryAdapter adapter = (DeviceHistoryAdapter) listView.getAdapter();
+        DeviceAdapter adapter = (DeviceAdapter) listView.getAdapter();
 
         if (adapter == null) {
             return;
@@ -129,12 +142,12 @@ public class DeviceListFragment extends Fragment {
         listView.requestLayout();
     }
 
-    private class DeviceHistoryAdapter extends ArrayAdapter<JSONObject> {
+    private class DeviceAdapter extends ArrayAdapter<JSONObject> {
         private Context mContext = null;
         private LayoutInflater mLayoutInflater = null;
         private List<JSONObject> mHistory = null;
 
-        private DeviceHistoryAdapter(Context context, List<JSONObject> item) {
+        private DeviceAdapter(Context context, List<JSONObject> item) {
             super(context, 0, item);
             mContext = context;
             mHistory = item;

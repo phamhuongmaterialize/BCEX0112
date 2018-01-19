@@ -1,6 +1,8 @@
 package com.example.phamt.bcex0112;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Class<?> mLastclass = null;
+
+    public Fragment mNowFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,8 +134,7 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction transaction = fm.beginTransaction();
             transaction.replace(R.id.fragment_container, LoginFragment.newInstance());
             transaction.commit();
-        }
-        else if (tab == TabFragment.START) {
+        } else if (tab == TabFragment.START) {
             mTabContainer.setVisibility(View.GONE);
             mFragmentContainer.setVisibility(View.VISIBLE);
 
@@ -138,6 +142,41 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction transaction = fm.beginTransaction();
             transaction.replace(R.id.fragment_container, StartFragment.newInstance());
             transaction.commit();
+        } else if (tab == TabFragment.DEVICE_UPLOAD) {
+            mTabContainer.setVisibility(View.GONE);
+            mFragmentContainer.setVisibility(View.VISIBLE);
+
+            mNowFragment = BluetoothDeviceListFragment.newInstance();
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.fragment_container, BluetoothDeviceListFragment.newInstance());
+
+            if(!isFinishing()){
+                transaction.commitAllowingStateLoss();
+            } else {
+                transaction.commit();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent Data){
+        // Check which request we're responding to
+        if (requestCode == 1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                // The user picked a contact.
+                // The Intent's data Uri identifies which contact was selected.
+                Toast.makeText(getApplicationContext(),"Bluetooth is enabled!", Toast.LENGTH_SHORT).show();
+////                if(mNowFragment == BluetoothDeviceListFragment.newInstance()){
+//                mNowFragment = BluetoothDeviceListFragment.newInstance();
+//                    ((BluetoothDeviceListFragment)mNowFragment).refresh();
+////                }
+                setViewTab(TabFragment.DEVICE_UPLOAD);
+            }
+            else
+                Toast.makeText(getApplicationContext(),"Bluetooth is disabled!", Toast.LENGTH_SHORT).show();
         }
     }
 
