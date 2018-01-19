@@ -90,7 +90,7 @@ public class LoginFragment extends Fragment {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "login", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(), "login", Toast.LENGTH_LONG).show();
                 main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);
             }
         });

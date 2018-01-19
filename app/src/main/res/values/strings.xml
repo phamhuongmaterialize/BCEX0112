@@ -24,5 +24,7 @@
     <string name="device">DEVICE</string>
     <string name="upload">UPLOAD</string>
     <string name="register">会員登録</string>
+    <string name="bluetooth_device_connect">デバイスの接続</string>
+    <string name="bluetooth_device_refresh_searching">再検索</string>
 
 </resources>

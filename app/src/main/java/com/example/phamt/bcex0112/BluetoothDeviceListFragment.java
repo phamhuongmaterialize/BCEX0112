@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -40,14 +42,35 @@ public class BluetoothDeviceListFragment extends Fragment {
     private View mRootView = null;
 
     private ListView mBluetoothDeviceListView = null;
+    private LinearLayout mBackImageLayout = null;
+    private TextView mRefreshListTextView = null;
 
     private List<BluetoothDevice> mBluetoothDeviceList = null;
-    private Set<BluetoothDevice> mBluetoothDeviceSet = null;
+    private HashMap<String, String> mBluetoothDeviceHashMap = new HashMap();
     private BluetoothDeviceAdapter mBluetoothDeviceAdapter = null;
 
     private MainActivity main = null;
     private BluetoothService mBluetoothService = null;
-    private IBluetoothCallback mIBluetoothCallback = null;
+    private IBluetoothCallback mIBluetoothCallback = new IBluetoothCallback() {
+        @Override
+        public void setBluetoothDevice(BluetoothDevice bluetoothDevice) {
+            String name = "noname";
+            if (bluetoothDevice.getName() != null) {
+                name = bluetoothDevice.getName();
+            }
+            String address = bluetoothDevice.getAddress();
+            if (!mBluetoothDeviceHashMap.containsKey(address)) {
+//                    if(name == null){
+//                        mBluetoothDeviceHashMap.put("noname", bluetoothDevice.getAddress());
+//                    } else {
+                mBluetoothDeviceHashMap.put(address, name);
+//                    }
+                mBluetoothDeviceList.add(bluetoothDevice);
+                mBluetoothDeviceAdapter.notifyDataSetChanged();
+            }
+
+        }
+    };
 
     public static BluetoothDeviceListFragment newInstance() {
         BluetoothDeviceListFragment mBluetoothDeviceListFragment = new BluetoothDeviceListFragment();
@@ -65,6 +88,18 @@ public class BluetoothDeviceListFragment extends Fragment {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        mBluetoothService.stopFindDevice();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mBluetoothService.stopFindDevice();
+    }
+
+    @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return mRootView = inflater.inflate(R.layout.bluetooth_device_list, container, false);
@@ -76,36 +111,41 @@ public class BluetoothDeviceListFragment extends Fragment {
 
         mBluetoothDeviceListView = (ListView) mRootView.findViewById(R.id.bluetooth_device_listview);
 
+        mBackImageLayout = (LinearLayout) mRootView.findViewById(R.id.bluetooth_device_back_image_layout);
+        mBackImageLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);
+            }
+        });
+
+        mRefreshListTextView = (TextView) mRootView.findViewById(R.id.bluetooth_device_refresh_textview);
+        mRefreshListTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setBluetoothDeviceListView();
+            }
+        });
+
+
         main = (MainActivity) getActivity();
 
-        mIBluetoothCallback = new IBluetoothCallback() {
-            @Override
-            public void setBluetoothDeviceName(String paramString) {
+        mBluetoothService = new BluetoothService(main, mIBluetoothCallback);
 
-            }
-
-            @Override
-            public void setBluetoothDevice(BluetoothDevice bluetoothDevice) {
-//                mBluetoothDeviceList.add(bluetoothDevice);
-                mBluetoothDeviceSet.add(bluetoothDevice);
-                mBluetoothDeviceAdapter.notifyDataSetChanged();
-            }
-        };
-
-        mBluetoothService = new BluetoothService(main,mIBluetoothCallback);
-
-        if (mBluetoothService.checkBluetoothStatus()) {
-            setBluetoothDeviceListView();
-        }
-
-        mBluetoothService.startFindDevice();
-
-
+        setBluetoothDeviceListView();
     }
 
     public void setBluetoothDeviceListView() {
         mBluetoothDeviceList = new ArrayList<>();
-        mBluetoothDeviceList = mBluetoothService.getPairingDeivce();
+        mBluetoothDeviceHashMap = new HashMap<>();
+        mBluetoothDeviceList = mBluetoothService.getPairedDeivce();
+        for (BluetoothDevice bluetoothDevice : mBluetoothDeviceList) {
+            if (bluetoothDevice.getName() == null) {
+                mBluetoothDeviceHashMap.put(bluetoothDevice.getAddress(), "noname");
+            } else {
+                mBluetoothDeviceHashMap.put(bluetoothDevice.getName(), bluetoothDevice.getAddress());
+            }
+        }
 
         mBluetoothDeviceAdapter = new BluetoothDeviceAdapter(getContext(), mBluetoothDeviceList);
         mBluetoothDeviceListView.setAdapter(mBluetoothDeviceAdapter);
@@ -116,6 +156,8 @@ public class BluetoothDeviceListFragment extends Fragment {
 
             }
         });
+
+        mBluetoothService.startFindDevice();
     }
 
     //バックボタン押下
@@ -181,7 +223,11 @@ public class BluetoothDeviceListFragment extends Fragment {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            holder.name.setText(b.getName());
+            if (b.getName() == null) {
+                holder.name.setText("noname" + "(" + b.getAddress() + ")");
+            } else {
+                holder.name.setText(b.getName() + "(" + b.getAddress() + ")");
+            }
 
 
             convertView.setTag(holder);

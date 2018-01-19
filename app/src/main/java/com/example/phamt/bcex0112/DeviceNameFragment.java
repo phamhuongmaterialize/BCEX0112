@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ public class DeviceNameFragment extends Fragment {
 
     private MainActivity main = null;
 
-    private ImageView mBackImageView = null;
+    private LinearLayout mBackImageLayout = null;
     private TextView mConfirmationTextView = null;
     private EditText mNameEditText = null;
 
@@ -57,11 +58,11 @@ public class DeviceNameFragment extends Fragment {
 
         main = (MainActivity) getActivity();
 
-        mBackImageView = (ImageView) mRootView.findViewById(R.id.device_name_back_imageview);
+        mBackImageLayout = (LinearLayout) mRootView.findViewById(R.id.device_name_back_image_layout);
         mConfirmationTextView = (TextView) mRootView.findViewById(R.id.device_name_confimation_textview);
         mNameEditText = (EditText) mRootView.findViewById(R.id.device_name_edittext);
 
-        mBackImageView.setOnClickListener(new View.OnClickListener() {
+        mBackImageLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);

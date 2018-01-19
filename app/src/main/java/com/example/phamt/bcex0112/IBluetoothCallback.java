@@ -7,7 +7,6 @@ import android.bluetooth.BluetoothDevice;
  */
 
 public abstract interface IBluetoothCallback {
-    public abstract void setBluetoothDeviceName(String paramString);
 
     public abstract void setBluetoothDevice(BluetoothDevice bluetoothDevice);
 

@@ -32,7 +32,7 @@ public class BluetoothService {
 
     private ConnectedThread mConnectedThread;
     private BluetoothAdapter mBluetoothAdapter;
-    public  IBluetoothCallback mIBluetoothCallback;
+    public IBluetoothCallback mIBluetoothCallback;
 
     private Context mContext;
     private Activity mActivity;
@@ -57,39 +57,43 @@ public class BluetoothService {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(BluetoothDevice.ACTION_FOUND.equals(action)){
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // add the name to the list
                 mIBluetoothCallback.setBluetoothDevice(device);
-                Toast.makeText(mActivity.getApplicationContext(),device.getName(),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mActivity.getApplicationContext(), device.getName(), Toast.LENGTH_SHORT).show();
             }
         }
     };
 
-    public void startFindDevice(){
-        if(mBluetoothAdapter.isDiscovering()){
+    public void startFindDevice() {
+        if (mBluetoothAdapter.isDiscovering()) {
+            mActivity.registerReceiver(blReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
             return;
+        } else {
+            mBluetoothAdapter.startDiscovery();
+            mActivity.registerReceiver(blReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
         }
-        mBluetoothAdapter.startDiscovery();
-        mActivity.registerReceiver(blReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
     }
 
-    public Set<BluetoothDevice> getPairingDeivce() {
+    public  void stopFindDevice(){
+        if (mBluetoothAdapter.isDiscovering()) {
+            mBluetoothAdapter.cancelDiscovery();
+        }
+    }
+
+    public ArrayList<BluetoothDevice> getPairedDeivce() {
         ArrayList<BluetoothDevice> bluetoothDeviceArrayList = new ArrayList<>();
         if (mBluetoothAdapter == null) {
             mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        } else {
-            Set<BluetoothDevice> bluetoothDeviceSet = mBluetoothAdapter.getBondedDevices();
-            if(bluetoothDeviceSet.size() > 0){
-                Iterator iterator = bluetoothDeviceSet.iterator();
-                while (iterator.hasNext()) {
-                    BluetoothDevice bluetoothDevice = (BluetoothDevice) iterator.next();
-                    bluetoothDeviceArrayList.add(bluetoothDevice);
-                }
+        }
+        Set<BluetoothDevice> bluetoothDeviceSet = mBluetoothAdapter.getBondedDevices();
+        if (bluetoothDeviceSet.size() > 0) {
+            Iterator iterator = bluetoothDeviceSet.iterator();
+            while (iterator.hasNext()) {
+                BluetoothDevice bluetoothDevice = (BluetoothDevice) iterator.next();
+                bluetoothDeviceArrayList.add(bluetoothDevice);
             }
-//            for (BluetoothDevice bluetoothDevice : bluetoothDeviceSet) {
-//                bluetoothDeviceArrayList.add(bluetoothDevice);
-//            }
         }
         return bluetoothDeviceArrayList;
     }
@@ -107,7 +111,8 @@ public class BluetoothService {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             mActivity.startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         } else {
-            Toast.makeText(mActivity.getApplicationContext(),"Bluetooth is already on!",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mActivity.getApplicationContext(), "Bluetooth is already on!", Toast.LENGTH_SHORT).show();
+            return;
         }
 
     }

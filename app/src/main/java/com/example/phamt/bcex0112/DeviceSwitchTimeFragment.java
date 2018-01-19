@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +29,7 @@ public class DeviceSwitchTimeFragment extends Fragment {
 
     private MainActivity main = null;
 
-    private ImageView mBackImageView = null;
+    private LinearLayout mBackImageLayout = null;
     private Button mConfirmationButton = null;
     private NumberPicker mMinutePicker = null;
     private NumberPicker mSecondPicker = null;
@@ -60,8 +61,8 @@ public class DeviceSwitchTimeFragment extends Fragment {
 
         main = (MainActivity) getActivity();
 
-        mBackImageView = (ImageView) mRootView.findViewById(R.id.device_switch_time_back_imageview);
-        mBackImageView.setOnClickListener(new View.OnClickListener() {
+        mBackImageLayout = (LinearLayout) mRootView.findViewById(R.id.device_switching_time_back_image_layout);
+        mBackImageLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);
@@ -91,7 +92,7 @@ public class DeviceSwitchTimeFragment extends Fragment {
         mConfirmationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), mMinutePicker.getValue() + "分" + mSecondPicker.getValue() + "秒", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(), mMinutePicker.getValue() + "分" + mSecondPicker.getValue() + "秒", Toast.LENGTH_LONG).show();
                 main.setViewTab(MainActivity.TabFragment.DEVICE_LIST);
             }
         });

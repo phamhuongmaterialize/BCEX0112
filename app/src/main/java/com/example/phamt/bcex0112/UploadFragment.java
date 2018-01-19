@@ -107,7 +107,7 @@ public class UploadFragment extends Fragment {
 
             if (convertView == null) {
                 mImageView = new ImageView(mContext);
-                mImageView.setLayoutParams(new GridView.LayoutParams(330, 330));
+                mImageView.setLayoutParams(new GridView.LayoutParams(350, 350));
                 mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 mImageView.setPadding(16, 16, 16, 16);
             } else {
