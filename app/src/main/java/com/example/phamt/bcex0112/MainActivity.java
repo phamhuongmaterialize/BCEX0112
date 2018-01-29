@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private View mUploadBorder = null;
     private View mDeviceBorder = null;
 
+
+
     public enum TabFragment {
         DEVICE_LIST,
         UPLOAD,
@@ -86,6 +88,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setViewTab(TabFragment.START);
+    }
+
+    public void setView(int i) {
+        switch (i){
+            case 1:
+                Intent intent1 = new Intent(this,SlideEffectActivity.class);
+                startActivity(intent1);
+                break;
+            case 2:
+                Intent intent2 = new Intent(this,DisplayTypeClass.class);
+                startActivity(intent2);
+                break;
+        }
     }
 
     public void setViewTab(TabFragment tab) {

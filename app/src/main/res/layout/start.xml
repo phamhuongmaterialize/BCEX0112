@@ -6,27 +6,26 @@
 
     <LinearLayout
         android:layout_width="270dp"
-        android:layout_marginBottom="170dp"
+        android:layout_height="170dp"
+        android:layout_gravity="center"
         android:layout_marginTop="170dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/start_register_button"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:background="@drawable/button_background_blue"
+            android:text="@string/register"
             android:textColor="#FFFFFF"
-            android:textSize="15dp"
-            android:text="@string/register" />
+            android:textSize="15dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="horizontal"></LinearLayout>
 
         <Button
@@ -34,9 +33,38 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="bottom"
-            android:layout_weight="1"
+            android:layout_weight="3"
+            android:background="@drawable/button_background_white"
             android:text="@string/login"
-            android:textSize="15dp"
-            android:background="@drawable/button_background_white"/>
+            android:textSize="15dp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="暗証番号をお忘れですか？"
+            android:textSize="13dp"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:textColor="#000000"
+            android:layout_height="wrap_content"
+            android:text="IDをお忘れですか？"
+            android:textSize="13dp"/>
+    </LinearLayout>
+
 </LinearLayout>

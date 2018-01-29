@@ -30,8 +30,8 @@ public class BluetoothService {
     private final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
     private final static int CONNECTING_STATUS = 3; // used in bluetooth handler to identify message status
 
-    private ConnectedThread mConnectedThread;
-    private BluetoothAdapter mBluetoothAdapter;
+    public ConnectedThread mConnectedThread;
+    public BluetoothAdapter mBluetoothAdapter;
     public IBluetoothCallback mIBluetoothCallback;
 
     private Context mContext;

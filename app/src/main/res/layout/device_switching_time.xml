@@ -88,7 +88,9 @@
         android:id="@+id/device_switching_time_confirmation_button"
         android:layout_width="match_parent"
         android:layout_margin="20dp"
+        android:textColor="#FFFFFF"
         android:layout_height="60dp"
+        android:background="@drawable/button_background_blue"
         android:text="@string/confirmation"
         android:textSize="18dp" />
 

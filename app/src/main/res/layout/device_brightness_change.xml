@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="@string/devise_setting_change_name"
+            android:text="明るさの変化"
             android:textColor="#000000"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -58,26 +58,12 @@
         android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/name"
-            android:textColor="#000000"
-            android:textSize="15dp"
-            android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/device_name_edittext"
+        <SeekBar
+            android:id="@+id/device_brightness_seekBar"
             android:layout_width="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_height="wrap_content"
-            android:layout_weight="8"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/please_enter_name"
-            android:textColor="#bdbdbd"
-            android:textSize="15dp" />
+            android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>

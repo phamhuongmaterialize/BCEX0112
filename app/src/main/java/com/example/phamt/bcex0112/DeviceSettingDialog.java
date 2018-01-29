@@ -127,7 +127,7 @@ public class DeviceSettingDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 //
-//                main.setViewTab(1);
+                main.setView(1);
 
                 // ダイアログを非表示
                 dismiss();
@@ -139,19 +139,22 @@ public class DeviceSettingDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 //
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("")
-                        .setMessage("再起動しますか。")
-                        .setPositiveButton("はい", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Yes
+//                new AlertDialog.Builder(getActivity())
+//                        .setTitle("")
+//                        .setMessage("再起動しますか。")
+//                        .setPositiveButton("はい", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                // Yes
+//
+//                            }
+//                        })
+//                        .setNegativeButton("いいえ", null)
+//                        .setCancelable(false)
+//                        .show();
 
-                            }
-                        })
-                        .setNegativeButton("いいえ", null)
-                        .setCancelable(false)
-                        .show();
+                RestartDialog restartDialog = RestartDialog.newInstance();
+                restartDialog.show(getFragmentManager(), "");
 
                 // ダイアログを非表示
                 dismiss();
@@ -163,19 +166,24 @@ public class DeviceSettingDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 //
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("")
-                        .setMessage("初期化しますか。")
-                        .setPositiveButton("はい", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Yes
+//                new AlertDialog.Builder(getActivity())
+//                        .setTitle("")
+//                        .setMessage("初期化しますか。")
+//                        .setPositiveButton("はい", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                // Yes
+//
+//                            }
+//                        })
+//                        .setNegativeButton("いいえ", null)
+//                        .setCancelable(false)
+//                        .show();
 
-                            }
-                        })
-                        .setNegativeButton("いいえ", null)
-                        .setCancelable(false)
-                        .show();
+                InitialDialog initialDialog = InitialDialog.newInstance();
+                initialDialog
+
+                        .show(getFragmentManager(), "");
 
                 // ダイアログを非表示
                 dismiss();
@@ -200,6 +208,7 @@ public class DeviceSettingDialog extends DialogFragment {
             public void onClick(View v) {
                 //
 //                main.setViewTab(1);
+                main.setView(2);
 
                 // ダイアログを非表示
                 dismiss();
